@@ -24,6 +24,10 @@ null='[]'
 global films
 films=[]
 
+def url(link):
+	http=f'https://rarbg.to/torrents.php?search={link}&order=seeders&by=DESC'
+
+# imdb search
 def isearch(a):
     global sp
     sp=''
