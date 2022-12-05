@@ -13,6 +13,7 @@ def isearch(a):
 
 def main():
 	isearch(input('movie: '))
+	print('------')
 	print(f'tt{media[0].movieID}')  # how to get TT
 	print(media[1])
 
