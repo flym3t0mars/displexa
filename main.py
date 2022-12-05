@@ -2,6 +2,7 @@
 import os
 import random
 import discord
+import rarbgapi
 from time import sleep as zz
 from datetime import datetime
 from dotenv import load_dotenv
