@@ -3,6 +3,7 @@ import os
 import random
 import discord
 from time import sleep as zz
+from datetime import datetime
 from dotenv import load_dotenv
 from os import system as s
 import imdb
@@ -79,6 +80,6 @@ async def on_message(message):
             logging
 
         with open('movieRequests.log', 'a') as f:
-            f.write(str(message.author)+': '+mess+'\n')
+            f.write(datetime.now().strftime('%m/%d/%Y %H:%M:%S ')+str(message.author)+' : '+mess+'\n')
 
 client.run(TOKEN)
