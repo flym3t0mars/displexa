@@ -58,12 +58,16 @@ async def on_message(message):
         film = msg.content  
         await message.channel.send(f'🔍{film}') # this will send out the message
         ##########
-
+        await message.channel.send('--------------')
+        
         isearch(film)
-        for i in range(len(films)):
-            await message.channel.send(f'[i+1] {films[i]}')
-            zz(0.5)
+        #for i in range(len(films)):
+         #   await message.channel.send(f'{[i+1]} {films[i]}')
+          #  zz(0.5)
 
+        #await message.channel.send('\n'.join([str(elem,elem.index) for elem in films]))
+
+        await message.channel.send('--------------')
         ##########
         #await message.channel.send()
 
