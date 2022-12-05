@@ -2,6 +2,7 @@
 import os
 import random
 import discord
+from time import sleep as zz
 from dotenv import load_dotenv
 from os import system as s
 import imdb
@@ -23,13 +24,15 @@ complete='✅'
 
 a='add '
 null='[]'
-
+global films
+films=[]
 
 def isearch(a):
     iq = imdb.IMDb()
     search = iq.search_movie(a)
     for movies in search:
-        print(movies)
+        #print(movies)
+        films.append(movies)
 
 # this is just here to clear the terminal
 @client.event
@@ -51,15 +54,15 @@ async def on_message(message):
 
     if message.content.startswith('search'):
         await message.channel.send('What movie are you looking for: ')
-        print('this')
         msg = await client.wait_for("message")
-        print('that')
-        parameter = msg.content  
-        await message.channel.send(f'🔍{parameter}') # this will send out the message
+        film = msg.content  
+        await message.channel.send(f'🔍{film}') # this will send out the message
         ##########
 
-        isearch(parameter)
-
+        isearch(film)
+        for i in range(len(films)):
+            await message.channel.send(f'[i+1] {films[i]}')
+            zz(0.5)
 
         ##########
         #await message.channel.send()
