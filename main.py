@@ -15,18 +15,13 @@ intents = discord.Intents.default()
 intents.message_content = True
 client = discord.Client(intents=intents)
 
-down='☑️'
-complete='✅'
-
-#############
-# KEY WORDS #
-#############
+down='☑️ '
+complete='✅ '
 
 a='add '
 null='[]'
 global films
 films=[]
-
 
 def isearch(a):
     global sp
@@ -85,6 +80,5 @@ async def on_message(message):
 
         with open('movieRequests.log', 'a') as f:
             f.write(str(message.author)+': '+mess+'\n')
-
 
 client.run(TOKEN)
