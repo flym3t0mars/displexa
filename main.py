@@ -27,12 +27,15 @@ null='[]'
 global films
 films=[]
 
+
 def isearch(a):
+    global sp
+    sp=''
     iq = imdb.IMDb()
     search = iq.search_movie(a)
-    for movies in search:
-        #print(movies)
-        films.append(movies)
+    for i in range(len(search)):
+        films.append(search[i])
+        sp += (f'{[i+1]} {films[i]} \n')
 
 # this is just here to clear the terminal
 @client.event
@@ -52,37 +55,36 @@ async def on_message(message):
     if message.author == client.user:
         return
 
+    # search function
     if message.content.startswith('search'):
         await message.channel.send('What movie are you looking for: ')
         msg = await client.wait_for("message")
-        film = msg.content  
+        film = msg.content
         await message.channel.send(f'🔍{film}') # this will send out the message
+
         ##########
         await message.channel.send('--------------')
-        
         isearch(film)
-        #for i in range(len(films)):
-         #   await message.channel.send(f'{[i+1]} {films[i]}')
-          #  zz(0.5)
-
-        #await message.channel.send('\n'.join([str(elem,elem.index) for elem in films]))
-
+        global sp
+        await message.channel.send(sp)
+        films.clear()
         await message.channel.send('--------------')
         ##########
-        #await message.channel.send()
 
+    # add function
     if a in message.content.lower():
         split_=f'{message.content.split(a,len(message.content))[1:len(message.content)]}'
         mess=(''.join(split_))
         response=f"downloading: \n{down} {mess}"
         await message.channel.send(response)
 
+        # logging adds
         logging=print(mess)
         if logging!=null:
             logging
 
         with open('movieRequests.log', 'a') as f:
             f.write(str(message.author)+': '+mess+'\n')
-    
+
 
 client.run(TOKEN)
